@@ -12,6 +12,9 @@ const hiddenGates = (gates) => {
   gates.forEach(e => tmpTab.push('X'))
   return tmpTab
 }
+const showHiddenGates = () => {
+
+}
 
 const playerChoice = () => {
   const readlineSync = require('readline-sync')
@@ -22,14 +25,25 @@ const playerChoice = () => {
 const playerFinalChoice = (randGates,choice,aiChoice) => {
   const readlineSync = require('readline-sync')
   let finalChoice = ''
-  console.log(finalChoice)
-  while((finalChoice !== 'o')||(finalChoice !== 'o')){
+  while((finalChoice !== 'o') && (finalChoice !== 'n')){
     finalChoice = readlineSync.question('voulez-vous changer de porte ? (o/n) : ')
   }
-    let tmpTab = [...randGates]
-    tmpTab.splice(aiChoice,1)
-    finalChoice === 'o' ? tmpTab.splice(choice,1) : tmpTab = [...tmpTab[choice]]
-  return tmpTab
+    console.log(finalChoice)
+    let tmp = ''
+    switch(finalChoice){
+      case 'o':
+        for( let i = 0 ; i < randGates.length ; ++i ){
+          if(i === choice && i === aiChoice){
+            continue
+          }else{
+            tmp = randGates[i]
+          }
+        }
+      case 'n':
+        tmp = randGates[choice]
+        break
+        }
+        return tmp
 }
 
 
@@ -62,3 +76,4 @@ exports.hiddenGates = hiddenGates
 exports.playerChoice = playerChoice
 exports.aiChoice = aiChoice
 exports.playerFinalChoice = playerFinalChoice
+exports.showHiddenGates = showHiddenGates
