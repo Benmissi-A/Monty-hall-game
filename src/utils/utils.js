@@ -20,12 +20,16 @@ const playerChoice = (hidGates) => {
   return choice-1
 }
 
-const aiChoice = (randGates,choice) => {
-  const { randomInt } = require('crypto')
-  const n = randomInt(0, 2) // un nombre aléatoire entre 0 et 1
-  console.log(console.log(`choice: ${choice}`))
-  let aiGates=[...randGates]
-  return aiGates.splice(choice, 1)
+const aiChoice = (randGates,choice) => { 
+  let aiChoice
+  for( let i = 0 ; i < randGates.length ; ++i ){
+    if(choice === i || randGates[i]==='car'){
+        continue
+    }else{
+      aiChoice = i 
+    }
+  }
+  return aiGates
 }
 
 exports.randomiseGate = randomiseGate
