@@ -9,12 +9,12 @@ const randomiseGate = () =>{
 
 const hiddenGates = (gates) => {
   let tmpTab = []
-  gates.forEach(e => tmpTab.push('X'))
-  return tmpTab
+  gates.forEach(e => tmpTab.push(rideau))
+  return tmpTab.join()
 }
-const showHiddenGates = () => {
-
-}
+// const showHiddenGates = () => {
+// const fs = require('fs')
+// }
 
 const playerChoice = () => {
   const readlineSync = require('readline-sync')
