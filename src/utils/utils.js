@@ -15,14 +15,20 @@ const hiddenGates = (gates) => {
 
 const playerChoice = (hidGates) => {
   const readlineSync = require('readline-sync')
-  let choice = readlineSync.question('choisissez une porte: ')
+  let choice = Number(readlineSync.question('choisissez une porte: '))
   console.log(`vous avez choisi la porte n°: ${choice}`)
-  return choice
+  return choice-1
 }
 
-const aiChoice = () => {
+const aiChoice = (randGates,choice) => {
+  const { randomInt } = require('crypto')
+  const n = randomInt(0, 2) // un nombre aléatoire entre 0 et 1
+  console.log(console.log(`choice: ${choice}`))
+  let aiGates=[...randGates]
+  return aiGates.splice(choice, 1)
 }
 
 exports.randomiseGate = randomiseGate
 exports.hiddenGates = hiddenGates
 exports.playerChoice = playerChoice
+exports.aiChoice = aiChoice
