@@ -1,0 +1,12 @@
+{
+  "name": "Monty-hall-game",
+  "version": "0.1.0",
+  "description": "monty-hall game",
+  "main": "main.js",
+  "repository": "https://github.com/Benmissi-A/Monty-hall-game.git",
+  "author": "Benmissi-A <aminebenmissi@hotmail.fr>",
+  "license": "MIT",
+  "dependencies": {
+    "crypto": "^1.0.1"
+  }
+}
