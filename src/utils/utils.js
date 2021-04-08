@@ -33,12 +33,13 @@ const playerFinalChoice = (randGates,choice,aiChoice) => {
     switch(finalChoice){
       case 'o':
         for( let i = 0 ; i < randGates.length ; ++i ){
-          if(i === choice && i === aiChoice){
+          if(i === choice || i === aiChoice){
             continue
           }else{
             tmp = randGates[i]
           }
         }
+        break
       case 'n':
         tmp = randGates[choice]
         break
@@ -46,16 +47,46 @@ const playerFinalChoice = (randGates,choice,aiChoice) => {
         return tmp
 }
 
+// auto player choice
+const autoPlayerChoice = () => {
+  const { randomInt } = require('crypto')
+  const n = randomInt(0, 3) // un nombre aléatoire entre 0 et 2
+  return n
+}
+const autoPlayerFinalChoice = (randGates,choice,aiChoice,Fchoice) => {
+  let finalChoice = Fchoice
+  let tmp = '' 
+  switch(finalChoice){
+    case 'o':
+      for( let i = 0 ; i < randGates.length ; ++i ){
+        if(i === choice || i === aiChoice){
+          continue
+        }else{
+          tmp = randGates[i]      
+        }
+      }
+      break
+    case 'n':
+      tmp = randGates[choice]
+      break
+      }
+   return tmp
+}
+
+// ******************
+
 
 const aiChoice = (randGates,choice) => { 
   const { randomInt } = require('crypto')
   const n = randomInt(0, 2) // un nombre aléatoire entre 0 et 1
   let tmp
   let tmpTab=[]
+  
+
   for( let i = 0 ; i < randGates.length ; ++i ){
     if(choice === i || randGates[i]==='car'){
         continue
-    }else if(randGates[choice === 'car']){
+    }else if(randGates[choice ] === 'car'){
       for( let j = 0 ; j < randGates.length ; ++j ){
         if(i === choice){
           continue
@@ -77,3 +108,8 @@ exports.playerChoice = playerChoice
 exports.aiChoice = aiChoice
 exports.playerFinalChoice = playerFinalChoice
 exports.showHiddenGates = showHiddenGates
+
+// auto choices
+
+exports.autoPlayerChoice = autoPlayerChoice
+exports.autoPlayerFinalChoice = autoPlayerFinalChoice
