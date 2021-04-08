@@ -4,18 +4,25 @@ const randomiseGate = () =>{
   const gates = ['goat', 'goat', 'goat'] // 3 chèvres par défaut derrière chacune des portes
   let randGates = [...gates]
   randGates[n] = 'car' 
-  // console.log(n)
-  // console.log(randGates)
   return randGates  
 }
+
 const hiddenGates = (gates) => {
   let hidGates = []
   gates.forEach(e => hidGates.push('X'))
   return hidGates
 }
-const selectGate = (hidGates, ) => {
 
+const playerChoice = (hidGates) => {
+  const readlineSync = require('readline-sync')
+  let choice = readlineSync.question('choisissez une porte: ')
+  console.log(`vous avez choisi la porte n°: ${choice}`)
+  return choice
+}
+
+const aiChoice = () => {
 }
 
 exports.randomiseGate = randomiseGate
 exports.hiddenGates = hiddenGates
+exports.playerChoice = playerChoice
