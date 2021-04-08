@@ -8,31 +8,57 @@ const randomiseGate = () =>{
 }
 
 const hiddenGates = (gates) => {
-  let hidGates = []
-  gates.forEach(e => hidGates.push('X'))
-  return hidGates
+  let tmpTab = []
+  gates.forEach(e => tmpTab.push('X'))
+  return tmpTab
 }
 
-const playerChoice = (hidGates) => {
+const playerChoice = () => {
   const readlineSync = require('readline-sync')
   let choice = Number(readlineSync.question('choisissez une porte: '))
   console.log(`vous avez choisi la porte n°: ${choice}`)
   return choice-1
 }
+const playerFinalChoice = (randGates,choice,aiChoice) => {
+  const readlineSync = require('readline-sync')
+  let finalChoice = ''
+  console.log(finalChoice)
+  while((finalChoice !== 'o')||(finalChoice !== 'o')){
+    finalChoice = readlineSync.question('voulez-vous changer de porte ? (o/n) : ')
+  }
+    let tmpTab = [...randGates]
+    tmpTab.splice(aiChoice,1)
+    finalChoice === 'o' ? tmpTab.splice(choice,1) : tmpTab = [...tmpTab[choice]]
+  return tmpTab
+}
+
 
 const aiChoice = (randGates,choice) => { 
-  let aiChoice
+  const { randomInt } = require('crypto')
+  const n = randomInt(0, 2) // un nombre aléatoire entre 0 et 1
+  let tmp
+  let tmpTab=[]
   for( let i = 0 ; i < randGates.length ; ++i ){
     if(choice === i || randGates[i]==='car'){
         continue
+    }else if(randGates[choice === 'car']){
+      for( let j = 0 ; j < randGates.length ; ++j ){
+        if(i === choice){
+          continue
+        }else{
+          tmpTab.push(i)
+        }
+      }
+      tmp = tmpTab[n]
     }else{
-      aiChoice = i 
+      tmp = i 
     }
   }
-  return aiGates
+  return tmp
 }
 
 exports.randomiseGate = randomiseGate
 exports.hiddenGates = hiddenGates
 exports.playerChoice = playerChoice
 exports.aiChoice = aiChoice
+exports.playerFinalChoice = playerFinalChoice
